@@ -1,0 +1,6 @@
+[submodule "sacos-image-conf"]
+	path = sacos-image-conf
+	url = git@github.com:HendricksK/sacos-image-conf.git
+[submodule "config"]
+	path = config
+	url = git@github.com:HendricksK/sacos-image-conf.git
