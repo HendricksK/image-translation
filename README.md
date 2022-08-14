@@ -4,6 +4,12 @@ translates text files that houses image links to json files, based on topic. eg:
 text file would just be named after topic, we search for filename named after topic, consume text inside it, will basically just be CSV
 and return all the strings as neat json
 
+this allows me to store only one version of an image, and point to it using image files. these image files can also be cached. the end points can also be cached.
+this will greatly reduce storage costs and image duplication.
+
+alpha is no cache
+beta will look into caching**
+
 [
     {
         "requestedTopic": "the+room+memes",
