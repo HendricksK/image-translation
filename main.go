@@ -23,6 +23,12 @@ var images = []image{
 	},
 }
 
+var topics = []string{
+	"the+room+memes",
+	"random",
+	"all",
+}
+
 func setupRouter() *gin.Engine {
 	router := gin.Default()
 	router.GET("/ping", func(c *gin.Context) {
@@ -30,10 +36,7 @@ func setupRouter() *gin.Engine {
 	})
 
 	router.GET("/topics", getImageTopics)
-	// router.POST("/albums", postAlbums)
-	// router.GET("/albums/:id", getAlbumByID)
-	// router.GET("/albums/title/:title", getAlbumByTitle)
-	// router.GET("/albums/artist/:artist", getAlbumsByArtist)
+	router.GET("/images", getImagesBasedOnTopic)
 	return router
 }
 
@@ -43,5 +46,10 @@ func main() {
 }
 
 func getImageTopics(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, topics)
+}
+
+// mock data for now
+func getImagesBasedOnTopic(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, images)
 }
