@@ -3,6 +3,6 @@ package imgimporter
 type Imgimporter struct {
 }
 
-func hello() string {
+func Hello() string {
 	return "hello"
 }

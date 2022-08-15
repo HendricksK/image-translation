@@ -1,3 +1,5 @@
+github.com/HendricksK/image-translation/imgimporter v0.0.0-20220815212300-6c818f340a56 h1:9MyZ/K4D0j5ALBr4LcIz5+jX2Map6k87uQXgwa02zqk=
+github.com/HendricksK/image-translation/imgimporter v0.0.0-20220815212300-6c818f340a56/go.mod h1:xxJydndE96C4m6Z/3dq1T0+NYS3hEPtb2zvtlyUYk4s=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
