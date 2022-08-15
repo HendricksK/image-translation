@@ -46,6 +46,9 @@ func main() {
 }
 
 func getImageTopics(c *gin.Context) {
+
+	// data := imgimporter.hello()
+
 	c.IndentedJSON(http.StatusOK, topics)
 }
 

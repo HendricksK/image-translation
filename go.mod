@@ -1,4 +1,5 @@
-module example/web-service-gin
+// module example/web-service-gin
+module github.com/HendricksK/iamge-translation
 
 go 1.18
 
