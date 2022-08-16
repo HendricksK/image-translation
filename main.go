@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/HendricksK/image-translation/imageimporter"
@@ -12,23 +11,6 @@ type image struct {
 	RequestedTopic string   `json:"requestedTopic"`
 	Images         []string `json:"Images"`
 	Number         int      `json:"Number"`
-}
-
-var images = []image{
-	{
-		RequestedTopic: "the+room+memes",
-		Images: []string{
-			"https://preview.redd.it/0ndypduzlf641.jpg?width=640&crop=smart&auto=webp&s=5cf49a2deb07cfa5bf628e1dfb074b0452bb8041",
-			"https://preview.redd.it/q6ez8ub45i931.jpg?width=640&crop=smart&auto=webp&s=4b4859c1cc752ac3310496852b8fd19a77aa7fc7",
-		},
-		Number: 2,
-	},
-}
-
-var topics = []string{
-	"the+room+memes",
-	"random",
-	"all",
 }
 
 func setupRouter() *gin.Engine {
@@ -47,26 +29,15 @@ func main() {
 	router.Run("localhost:8080")
 }
 
-func getImageTopicsMock(c *gin.Context) {
-	data := imageimporter.Hello()
-	fmt.Println(data)
-	// need to append to images array here
-	c.IndentedJSON(http.StatusOK, topics)
-}
-
 func getImageTopics(c *gin.Context) {
-	data := imageimporter.Hello()
-	fmt.Println(data)
-	// need to append to images array here
-	c.IndentedJSON(http.StatusOK, topics)
+	data := imageimporter.GetAllUploadedImageTopics()
+	c.IndentedJSON(http.StatusOK, data)
 }
 
-// mock data for now
 func getImagesBasedOnTopic(c *gin.Context) {
-	data := imageimporter.GetImagesBasedOnTopic("the+room+memes")
-	fmt.Println(data)
 
 	var imageReturn image
+	data := imageimporter.GetImagesBasedOnTopic("the+room+memes")
 
 	for _, img := range data {
 		if img != "" {
