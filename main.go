@@ -3,7 +3,6 @@ package main
 import (
 	"net/http"
 
-	"github.com/HendricksK/image-translation/imgimporter"
 	"github.com/gin-gonic/gin"
 )
 
