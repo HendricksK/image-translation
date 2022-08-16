@@ -47,8 +47,14 @@ func main() {
 	router.Run("localhost:8080")
 }
 
-func getImageTopics(c *gin.Context) {
+func getImageTopicsMock(c *gin.Context) {
+	data := imageimporter.Hello()
+	fmt.Println(data)
+	// need to append to images array here
+	c.IndentedJSON(http.StatusOK, topics)
+}
 
+func getImageTopics(c *gin.Context) {
 	data := imageimporter.Hello()
 	fmt.Println(data)
 	// need to append to images array here
@@ -57,5 +63,19 @@ func getImageTopics(c *gin.Context) {
 
 // mock data for now
 func getImagesBasedOnTopic(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, images)
+	data := imageimporter.GetImagesBasedOnTopic("the+room+memes")
+	fmt.Println(data)
+
+	var imageReturn image
+
+	for _, img := range data {
+		if img != "" {
+			imageReturn.Images = append(imageReturn.Images, img)
+		}
+	}
+
+	imageReturn.RequestedTopic = "the+room+memes"
+	imageReturn.Number = len(imageReturn.Images)
+
+	c.IndentedJSON(http.StatusOK, imageReturn)
 }
