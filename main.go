@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
+	"github.com/HendricksK/image-translation/imageimporter"
 	"github.com/gin-gonic/gin"
 )
 
@@ -47,8 +49,9 @@ func main() {
 
 func getImageTopics(c *gin.Context) {
 
-	data := imgimporter.Hello()
-
+	data := imageimporter.Hello()
+	fmt.Println(data)
+	// need to append to images array here
 	c.IndentedJSON(http.StatusOK, topics)
 }
 
