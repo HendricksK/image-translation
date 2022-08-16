@@ -8,13 +8,24 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGetImagesByTopic(t *testing.T) {
+func TestGetAlbums(t *testing.T) {
 	router := setupRouter()
 
 	w := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "/images", nil)
+	req, _ := http.NewRequest("GET", "/topics", nil)
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 200, w.Code)
 
+}
+
+func TestPing(t *testing.T) {
+	router := setupRouter()
+
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/ping", nil)
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, "pong", w.Body.String())
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/HendricksK/image-translation/imageimporter"
@@ -20,7 +21,7 @@ func setupRouter() *gin.Engine {
 	})
 
 	router.GET("/topics", getImageTopics)
-	router.GET("/images", getImagesBasedOnTopic)
+	router.GET("/images/:topic", getImagesBasedOnTopic)
 	return router
 }
 
@@ -34,10 +35,20 @@ func getImageTopics(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, data)
 }
 
+// https://github.com/gin-gonic/gin/issues/2555
 func getImagesBasedOnTopic(c *gin.Context) {
 
 	var imageReturn image
-	data := imageimporter.GetImagesBasedOnTopic("the+room+memes")
+
+	topic := c.Param("topic")
+	fmt.Println(topic)
+	// Get topic from gin context, if no topic
+	// bad request
+	if topic == "" {
+		c.IndentedJSON(http.StatusBadRequest, "")
+	}
+
+	data := imageimporter.GetImagesBasedOnTopic(topic)
 
 	for _, img := range data {
 		if img != "" {
@@ -45,7 +56,7 @@ func getImagesBasedOnTopic(c *gin.Context) {
 		}
 	}
 
-	imageReturn.RequestedTopic = "the+room+memes"
+	imageReturn.RequestedTopic = topic
 	imageReturn.Number = len(imageReturn.Images)
 
 	c.IndentedJSON(http.StatusOK, imageReturn)
