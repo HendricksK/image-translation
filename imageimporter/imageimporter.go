@@ -8,14 +8,12 @@ import (
 
 const filePath = "./config"
 
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 func Hello() string {
 	return "Hello"
+}
+
+func GetAllUploadedImageTopics() []string {
+	return retrieveRequestedDataFromFile("topics")
 }
 
 func GetImagesBasedOnTopicMock(topic string) []string {
@@ -30,29 +28,37 @@ func GetImagesBasedOnTopicMock(topic string) []string {
 	}
 }
 
+func GetImagesBasedOnTopic(topic string) []string {
+	return retrieveRequestedDataFromFile(topic)
+}
+
 // https://gobyexample.com/reading-files
 // https://stackoverflow.com/questions/8757389/reading-a-file-line-by-line-in-go
 // Not going to pretend that I can write a file reder off by heart.
-func GetImagesBasedOnTopic(topic string) []string {
+func retrieveRequestedDataFromFile(file_name string) []string {
 
-	topicFile, err := os.Open(filePath + "/test.txt")
-	check(err)
+	// we want to check if the file exists first
+	topicFile, err := os.Open(filePath + "/" + file_name + ".txt")
+	if err != nil {
+		// need to write to a log file at some point
+		return []string{}
+	}
 
 	defer topicFile.Close()
 
 	scanner := bufio.NewScanner(topicFile)
 	// optionally, resize scanner's capacity for lines over 64K, see next example
 
-	var imageArr []string
+	var returnData []string
 
 	for scanner.Scan() {
 		// fmt.Println(scanner.Text())
-		imageArr = append(imageArr, scanner.Text())
+		returnData = append(returnData, scanner.Text())
 	}
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
 
-	return imageArr
+	return returnData
 }
