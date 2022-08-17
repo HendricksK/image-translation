@@ -31,7 +31,7 @@ func main() {
 	port := os.Getenv("PORT")
 
 	if port != "" {
-		router.Run("localhost:" + port)
+		router.Run("0.0.0.0:" + port)
 	} else {
 		router.Run("localhost:5000")
 	}
