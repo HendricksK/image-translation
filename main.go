@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/HendricksK/image-translation/imageimporter"
 	"github.com/gin-gonic/gin"
@@ -27,7 +28,13 @@ func setupRouter() *gin.Engine {
 
 func main() {
 	router := setupRouter()
-	router.Run("localhost:5000")
+	port := os.Getenv("PORT")
+
+	if port != "" {
+		router.Run("localhost:" + port)
+	} else {
+		router.Run("localhost:5000")
+	}
 }
 
 func getImageTopics(c *gin.Context) {
