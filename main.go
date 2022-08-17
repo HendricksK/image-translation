@@ -27,7 +27,7 @@ func setupRouter() *gin.Engine {
 
 func main() {
 	router := setupRouter()
-	router.Run("localhost:8080")
+	router.Run("localhost:5000")
 }
 
 func getImageTopics(c *gin.Context) {
