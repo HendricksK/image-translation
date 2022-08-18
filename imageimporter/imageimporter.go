@@ -2,6 +2,7 @@ package imageimporter
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"os"
 )
@@ -40,6 +41,7 @@ func retrieveRequestedDataFromFile(file_name string) []string {
 	// we want to check if the file exists first
 	topicFile, err := os.Open(filePath + "/" + file_name + ".txt")
 	if err != nil {
+		fmt.Println(err)
 		// need to write to a log file at some point
 		return []string{}
 	}
@@ -57,6 +59,7 @@ func retrieveRequestedDataFromFile(file_name string) []string {
 	}
 
 	if err := scanner.Err(); err != nil {
+		fmt.Println(err)
 		log.Fatal(err)
 	}
 
