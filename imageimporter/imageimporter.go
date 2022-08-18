@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-const filePath = "./config"
+const filePath = "./image_config"
 
 func Hello() string {
 	return "Hello"
