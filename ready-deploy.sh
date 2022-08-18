@@ -2,3 +2,4 @@
 echo "hello there"
 git submodule update --recursive
 rsync -ah --progress config/* image_config/
+git add image_config
