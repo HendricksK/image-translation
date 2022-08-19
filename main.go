@@ -10,9 +10,9 @@ import (
 )
 
 type image struct {
-	RequestedTopic string   `json:"requestedTopic"`
-	Images         []string `json:"Images"`
-	Number         int      `json:"Number"`
+	RequestedTopic string   `json:"requested_topic"`
+	Images         []string `json:"images"`
+	Number         int      `json:"number"`
 }
 
 func setupRouter() *gin.Engine {
